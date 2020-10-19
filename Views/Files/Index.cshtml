@@ -1,0 +1,25 @@
+﻿@using System.IO
+@using System.Linq
+@using Microsoft.AspNetCore.Hosting
+@model IWebHostEnvironment
+@{
+
+    ViewData["Title"] = "File List";
+    string[] filenames = Directory.GetFiles(
+        @Model.ContentRootPath + System.IO.Path.DirectorySeparatorChar + "TextFiles");
+    var files = filenames.Select(
+        x => File.Exists(x) ? 
+            (Name: System.IO.Path.GetFileName(x), RealName: x) :
+            (Name: null, RealName: null));
+}
+
+<ul>
+    @foreach(var file in files.Where(x => x.Name != null)) {
+        <li>
+            @Html.ActionLink(linkText: file.Name, actionName: "Content", null, 
+            new {
+                id=file.Name,
+            })
+        </li>
+    }
+</ul>

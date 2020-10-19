@@ -1,0 +1,11 @@
+﻿@using System.IO
+@model FilesModel
+@{
+    ViewData["Title"] = "File";
+}
+<h1>@Model.filename</h1> 
+@if (@Model.fileContents != null) {
+    <span style="white-space: pre-wrap">@Model.fileContents</span>
+} else {
+    <p style="color: red">File not found!</p>
+}
