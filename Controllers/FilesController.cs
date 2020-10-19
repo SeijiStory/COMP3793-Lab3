@@ -31,7 +31,6 @@ namespace COMP3793_Lab2.Controllers
             string tmpContents = null;
             char slash = System.IO.Path.DirectorySeparatorChar;
             string filename = _webHostEnvironment.ContentRootPath + slash + "TextFiles" + slash + id;
-			ViewData["filename"] = filename;
             if (System.IO.File.Exists(filename))
                 {
                 using (StreamReader sr = System.IO.File.OpenText(filename)) {
