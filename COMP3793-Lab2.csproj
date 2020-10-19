@@ -4,5 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>COMP3793_Lab2</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+	<Folder Include="TextFiles\" />
+</ItemGroup>
 
 </Project>
