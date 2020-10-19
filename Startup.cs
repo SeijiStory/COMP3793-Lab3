@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -42,11 +43,14 @@ namespace COMP3793_Lab2
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
-            app.UseStaticFiles(new StaticFileOptions {
-				FileProvider = new PhysicalFileProvider(
-					Path.Combine(env.ContentRootPath, "TextFiles")),
-				RequestPath = "/TextFiles"
-			});
+            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                ServeUnknownFileTypes = true,
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), @"TextFiles")),
+                RequestPath = new PathString("/TextFiles")
+            });
 
             app.UseRouting();
 
