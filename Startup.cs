@@ -40,7 +40,11 @@ namespace COMP3793_Lab2
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions {
+				FileProvider = new PhysicalFileProvider(
+					Path.Combine(env.ContentRootPath, "TextFiles")),
+				RequestPath = "/TextFiles"
+			});
 
             app.UseRouting();
 
